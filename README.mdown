@@ -7,7 +7,7 @@ It also includes support for ImageShack when you want to post messages containin
 Adding MJFBWrapper to your project
 ====================================
 
-1. Download and install FBConnect, instructions and download link http://wiki.developers.facebook.com/index.php/Facebook_Connect_for_iPhone
+1. Download and install FBConnect, [instructions and download link](http://wiki.developers.facebook.com/index.php/Facebook_Connect_for_iPhone)
 2. Download the latest code version from the repository.
 3. Extract the archive.
 4. Open the project in Xcode.
@@ -18,23 +18,21 @@ Code Example
 =============
 This example takes care of the whole connect and permission process on Facebook.
 
-`
-FBSession *session = [FBSession sessionForApplication:kAPIKey secret:kAPISecret delegate:self];
-[session resume];
+	FBSession *session = [FBSession sessionForApplication:kAPIKey secret:kAPISecret delegate:self];
+	[session resume];
 
-MJFBStreamAttachment *attachment = [[[MJFBStreamAttachment alloc]init] autorelease];
-attachment.message = @"Message";
-attachment.name = @"Name";
-attachment.description = @"Description";
-attachment.href = @"http://www.domain.com";
-attachment.caption = @"Caption"
-attachment.actionLink = [MJFBActionLink linkWithText:@"action" href:@"http://www.action.com"];
-[attachment.properties addObject:[MJFBAttachmentProperty propertyWithName:@"aName" text:@"text" href:@"http://www.text.com"]];
+	MJFBStreamAttachment *attachment = [[[MJFBStreamAttachment alloc]init] autorelease];
+	attachment.message = @"Message";
+	attachment.name = @"Name";
+	attachment.description = @"Description";
+	attachment.href = @"http://www.domain.com";
+	attachment.caption = @"Caption"
+	attachment.actionLink = [MJFBActionLink linkWithText:@"action" href:@"http://www.action.com"];
+	[attachment.properties addObject:[MJFBAttachmentProperty propertyWithName:@"aName" text:@"text" href:@"http://www.text.com"]];
 
-MJFBStream *fbStream = [[MJFBStream alloc] initWithFBSession:session delegate:self];	
-[fbStream publishAttachment:[self createAttachmentWithImage:nil]];
-[fbStream release];
-`
+	MJFBStream *fbStream = [[MJFBStream alloc] initWithFBSession:session delegate:self];	
+	[fbStream publishAttachment:[self createAttachmentWithImage:nil]];
+	[fbStream release];
 
 Usage
 =====
