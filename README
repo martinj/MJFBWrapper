@@ -1,0 +1,44 @@
+MJFBWrapper
+=============
+
+MJFBWrapper is an FBConnect wrapper for the iPhone which makes it easier to post messages to the Facebook Wall.
+It also includes support for ImageShack when you want to post messages containing images.
+
+Adding MJFBWrapper to your project
+====================================
+
+1. Download and install FBConnect, instructions and download link http://wiki.developers.facebook.com/index.php/Facebook_Connect_for_iPhone
+2. Download the latest code version from the repository.
+3. Extract the archive.
+4. Open the project in Xcode.
+5. Drag and drop the `ImageShack` and `MJFBWrapper` groups to your classes group (in the Groups & Files view). 
+6. Make sure to select Copy items when asked. 
+
+Code Example
+=============
+This example takes care of the whole connect and permission process on Facebook.
+
+`
+FBSession *session = [FBSession sessionForApplication:kAPIKey secret:kAPISecret delegate:self];
+[session resume];
+
+MJFBStreamAttachment *attachment = [[[MJFBStreamAttachment alloc]init] autorelease];
+attachment.message = @"Message";
+attachment.name = @"Name";
+attachment.description = @"Description";
+attachment.href = @"http://www.domain.com";
+attachment.caption = @"Caption"
+attachment.actionLink = [MJFBActionLink linkWithText:@"action" href:@"http://www.action.com"];
+[attachment.properties addObject:[MJFBAttachmentProperty propertyWithName:@"aName" text:@"text" href:@"http://www.text.com"]];
+
+MJFBStream *fbStream = [[MJFBStream alloc] initWithFBSession:session delegate:self];	
+[fbStream publishAttachment:[self createAttachmentWithImage:nil]];
+[fbStream release];
+`
+
+Usage
+=====
+
+The project contains a simple demo which should give you an idea on how to use it.
+Add your Facebook API key and secret in `MJFBWrapperAppDelegate.m` build and run to try it out.
+See `MJFBWrapperAppDelegate.m` for the demo code.
