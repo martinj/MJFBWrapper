@@ -31,7 +31,7 @@ This example takes care of the whole connect and permission process on Facebook.
 	[attachment.properties addObject:[MJFBAttachmentProperty propertyWithName:@"aName" text:@"text" href:@"http://www.text.com"]];
 
 	MJFBStream *fbStream = [[MJFBStream alloc] initWithFBSession:session delegate:self];	
-	[fbStream publishAttachment:[self createAttachmentWithImage:nil]];
+	[fbStream publishAttachment:attachment];
 	[fbStream release];
 
 Usage
